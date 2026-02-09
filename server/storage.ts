@@ -1,38 +1,69 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { schemes, chatLogs, type Scheme, type InsertScheme, type InsertChatLog, type ChatLog } from "@shared/schema";
+import { eq, ilike, or, and, sql } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // Schemes
+  getAllSchemes(category?: string, state?: string, search?: string): Promise<Scheme[]>;
+  getSchemeById(id: number): Promise<Scheme | undefined>;
+  createScheme(scheme: InsertScheme): Promise<Scheme>;
+  seedSchemes(schemesList: InsertScheme[]): Promise<void>;
+
+  // Chat Logs
+  logChat(log: InsertChatLog): Promise<ChatLog>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+export class DatabaseStorage implements IStorage {
+  async getAllSchemes(category?: string, state?: string, search?: string): Promise<Scheme[]> {
+    let conditions = [];
 
-  constructor() {
-    this.users = new Map();
+    if (category) {
+      conditions.push(ilike(schemes.category, `%${category}%`));
+    }
+    
+    if (state) {
+      conditions.push(or(
+        ilike(schemes.state, `%${state}%`),
+        ilike(schemes.state, 'Pan India') // Always include Pan India
+      ));
+    }
+
+    if (search) {
+      conditions.push(or(
+        ilike(schemes.name, `%${search}%`),
+        ilike(schemes.description, `%${search}%`),
+        ilike(schemes.benefits, `%${search}%`)
+      ));
+    }
+
+    if (conditions.length > 0) {
+      return await db.select().from(schemes).where(and(...conditions));
+    }
+
+    return await db.select().from(schemes);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getSchemeById(id: number): Promise<Scheme | undefined> {
+    const [scheme] = await db.select().from(schemes).where(eq(schemes.id, id));
+    return scheme;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async createScheme(scheme: InsertScheme): Promise<Scheme> {
+    const [newScheme] = await db.insert(schemes).values(scheme).returning();
+    return newScheme;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async seedSchemes(schemesList: InsertScheme[]): Promise<void> {
+    const existing = await db.select({ count: sql<number>`count(*)` }).from(schemes);
+    if (Number(existing[0].count) === 0) {
+      await db.insert(schemes).values(schemesList);
+    }
+  }
+
+  async logChat(log: InsertChatLog): Promise<ChatLog> {
+    const [newLog] = await db.insert(chatLogs).values(log).returning();
+    return newLog;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
