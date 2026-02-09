@@ -5,6 +5,7 @@ import { z } from "zod";
 export const schemes = pgTable("schemes", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
+  source: text("source").notNull().default("Central"), // Central or Karnataka
   category: text("category").notNull(), // farmer, student, women, etc.
   description: text("description").notNull(),
   beneficiaries: text("beneficiaries").notNull(),
@@ -14,6 +15,7 @@ export const schemes = pgTable("schemes", {
   applicationProcess: text("application_process").notNull(),
   officialLink: text("official_link"),
   state: text("state").default("Pan India"),
+  keywords: text("keywords").array(), // For enhanced matching
   // Support for simple multilingual mapping if needed later, or just store JSON
   translations: jsonb("translations").default({}), 
 });

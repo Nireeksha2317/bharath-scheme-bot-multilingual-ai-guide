@@ -1,0 +1,166 @@
+Further expand the Bharat Scheme Bot by adding a LARGE, comprehensive,
+well-categorized list of Indian Central Government and Karnataka State Government schemes.
+
+The expansion should significantly increase coverage while keeping
+performance, UI clarity, and chatbot accuracy intact.
+
+────────────────────────────────
+1️⃣ CENTRAL GOVERNMENT SCHEMES (EXTENSIVE)
+────────────────────────────────
+
+AGRICULTURE & FARMERS
+- PM Krishi Sinchayee Yojana (PMKSY)
+- Rashtriya Krishi Vikas Yojana (RKVY)
+- Paramparagat Krishi Vikas Yojana
+- National Food Security Mission (NFSM)
+- PM Annadata Aay Sanrakshan Abhiyan (PM-AASHA)
+- National Livestock Mission
+- Fisheries & Aquaculture Infrastructure Development Fund (FIDF)
+
+EDUCATION & STUDENTS
+- PM SHRI Schools Scheme
+- Eklavya Model Residential Schools
+- Kasturba Gandhi Balika Vidyalaya
+- National Means-cum-Merit Scholarship
+- INSPIRE Scholarship
+- PM Yasasvi Scholarship Scheme
+- National Digital Library of India
+
+WOMEN & CHILD DEVELOPMENT
+- Mission Shakti
+- Palna Scheme (Creche Services)
+- National Creche Scheme
+- PM POSHAN (Mid-Day Meal)
+- Scheme for Adolescent Girls (SAG)
+
+EMPLOYMENT, SKILL & ENTREPRENEURSHIP
+- Deen Dayal Upadhyaya Grameen Kaushalya Yojana
+- Pradhan Mantri Rojgar Protsahan Yojana
+- Credit Guarantee Scheme for MSMEs
+- PM Vishwakarma Yojana
+- Skill India Digital Platform
+
+HEALTH, NUTRITION & DISABILITY
+- National Mental Health Programme
+- Rashtriya Bal Swasthya Karyakram
+- National AIDS Control Programme
+- ADIP Scheme for Persons with Disabilities
+
+HOUSING, URBAN & INFRASTRUCTURE
+- National Urban Livelihoods Mission (NULM)
+- Smart Cities Mission
+- Deen Dayal Antyodaya Yojana – NRLM
+- PM Gati Shakti National Master Plan
+
+FINANCIAL INCLUSION & SOCIAL SECURITY
+- PM Suraksha Bima Yojana
+- PM Jeevan Jyoti Bima Yojana
+- Varishtha Pension Bima Yojana
+- Senior Citizens Savings Scheme (SCSS)
+
+────────────────────────────────
+2️⃣ KARNATAKA STATE GOVERNMENT SCHEMES (EXTENSIVE)
+────────────────────────────────
+
+AGRICULTURE & RURAL
+- Raitha Bandhu Scheme
+- Krushi Yantra Dhare
+- Organic Farming Mission (Savayava Bhagya)
+- Raitha Vidyanidhi Scholarship
+
+WOMEN & GIRLS
+- Gruha Jyothi Scheme
+- Kanyashree Scheme (State)
+- Mathrushree Scheme
+- Santhwana Scheme
+
+STUDENTS & EDUCATION
+- Vidyasiri Food & Accommodation Scheme
+- Fee Reimbursement Scheme (Karnataka)
+- Free Bicycle Scheme
+- Minority Scholarship Scheme (Karnataka)
+
+HEALTH & SOCIAL WELFARE
+- Indira Gandhi Health Insurance Scheme
+- Sneha Sanjeevini Scheme
+- Manasini Scheme
+- Disabled Pension Scheme (Karnataka)
+
+EMPLOYMENT & YOUTH
+- Self Employment Scheme (Karnataka)
+- Karnataka Udyoga Mitra
+- Kaushalya Karnataka Mission
+- Yuva Spandana Programme
+
+HOUSING & BASIC SERVICES
+- Basava Vasathi Yojana
+- Ambedkar Housing Scheme
+- Bhagya Jyothi Scheme
+- Indira Canteen Scheme
+
+────────────────────────────────
+3️⃣ DATA STRUCTURE & SCALABILITY
+────────────────────────────────
+
+Ensure each scheme entry includes:
+- scheme_name
+- scheme_source (Central / Karnataka)
+- category
+- target_group
+- state_applicability
+- eligibility
+- benefits
+- documents_required
+- application_process
+- official_link
+- keywords (for NLP matching)
+
+Ensure data is structured for:
+- Fast filtering
+- Category-based queries
+- State-based queries
+
+────────────────────────────────
+4️⃣ CHATBOT INTELLIGENCE UPGRADE
+────────────────────────────────
+
+• Improve NLP matching using:
+  - category keywords
+  - state keywords (Karnataka, KA)
+  - scheme source keywords (central, state)
+
+• Support queries like:
+  - "List all Karnataka government schemes"
+  - "Central schemes for disabled persons"
+  - "State government schemes for students in Karnataka"
+
+• If too many schemes match:
+  - Show top 3 results
+  - Offer “Show more schemes” option
+
+────────────────────────────────
+5️⃣ UI / UX ENHANCEMENT (LIGHT BUT EFFECTIVE)
+────────────────────────────────
+
+✔ Add category icons (farmer, student, women, health, job).
+✔ Add scheme source badges (🇮🇳 Central | 🟡 Karnataka).
+✔ Add “Show more” pagination for large results.
+✔ Keep UI clean, readable, and non-overwhelming.
+
+────────────────────────────────
+6️⃣ PERFORMANCE & QUALITY
+────────────────────────────────
+
+• Ensure chatbot response time remains fast.
+• Avoid duplicate schemes.
+• Keep consistent formatting across schemes.
+• Maintain existing features and UI polish.
+
+────────────────────────────────
+OUTPUT REQUIREMENT
+────────────────────────────────
+
+Update the dataset, backend logic, and UI rendering.
+Do not remove or break existing features.
+Return clean, well-commented, production-ready code.
+Ensure smooth execution on Replit.

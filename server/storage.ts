@@ -14,7 +14,7 @@ export interface IStorage {
 }
 
 export class DatabaseStorage implements IStorage {
-  async getAllSchemes(category?: string, state?: string, search?: string): Promise<Scheme[]> {
+  async getAllSchemes(category?: string, state?: string, search?: string, source?: string): Promise<Scheme[]> {
     let conditions = [];
 
     if (category) {
@@ -24,15 +24,21 @@ export class DatabaseStorage implements IStorage {
     if (state) {
       conditions.push(or(
         ilike(schemes.state, `%${state}%`),
-        ilike(schemes.state, 'Pan India') // Always include Pan India
+        ilike(schemes.state, 'Pan India'),
+        ilike(schemes.state, 'Karnataka')
       ));
+    }
+
+    if (source) {
+      conditions.push(ilike(schemes.source, `%${source}%`));
     }
 
     if (search) {
       conditions.push(or(
         ilike(schemes.name, `%${search}%`),
         ilike(schemes.description, `%${search}%`),
-        ilike(schemes.benefits, `%${search}%`)
+        ilike(schemes.benefits, `%${search}%`),
+        sql`${schemes.keywords} @> ARRAY[${search}]::text[]`
       ));
     }
 
