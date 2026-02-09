@@ -1,0 +1,176 @@
+You are an expert full-stack AI engineer and UI/UX designer.
+
+I already have a Flask-based multilingual Government Scheme Guide chatbot for India on Replit.
+The app is partially working but:
+- Chatbot responses are inconsistent
+- Intent matching is weak
+- UI feels static and not assistant-like
+
+Your task is to FIX, ENHANCE, and UPGRADE the entire app.
+
+────────────────────────────────
+1️⃣ CORE FUNCTIONAL FIXES
+────────────────────────────────
+
+• Improve chatbot intent detection using keyword-based intent matching.
+• Support intents like:
+  - farmer
+  - student
+  - women
+  - employment
+  - health
+  - housing
+  - senior citizens
+
+• Normalize user input (lowercase, trim, flexible keywords).
+• Ensure the chatbot ALWAYS returns a response (no silent failures).
+• Add fallback responses when intent is unknown.
+• Improve scheme filtering logic to avoid repeated or irrelevant schemes.
+
+────────────────────────────────
+2️⃣ EXPAND GOVERNMENT SCHEMES
+────────────────────────────────
+
+Enhance the dataset to include schemes from these categories:
+
+Agriculture & Farmers:
+- PM Kisan Samman Nidhi
+- PM Fasal Bima Yojana
+- Kisan Credit Card
+- Soil Health Card
+
+Education & Students:
+- National Scholarship Portal
+- Post-Matric Scholarship (SC/ST/OBC)
+- Pragati Scholarship for Girls
+- AICTE Saksham
+
+Women & Child Welfare:
+- Sukanya Samriddhi Yojana
+- PM Matru Vandana Yojana
+- Beti Bachao Beti Padhao
+- Ujjwala Yojana
+
+Employment & Skill Development:
+- PM Kaushal Vikas Yojana
+- MGNREGA
+- Startup India
+- Stand-Up India
+
+Health & Insurance:
+- Ayushman Bharat (PM-JAY)
+- Janani Suraksha Yojana
+- National Health Mission
+
+Housing & Urban:
+- PM Awas Yojana (Urban & Rural)
+- Swachh Bharat Mission
+- AMRUT
+
+Senior Citizens & Pension:
+- Atal Pension Yojana
+- PM Vaya Vandana Yojana
+- National Social Assistance Programme
+
+For EACH scheme store:
+- Scheme name
+- Category
+- Target beneficiaries
+- Eligibility
+- Benefits
+- Required documents
+- Application process
+- Official link
+- State applicability
+
+Use JSON or SQLite optimized for fast lookup.
+
+────────────────────────────────
+3️⃣ MULTILINGUAL SUPPORT
+────────────────────────────────
+
+• Support English, Hindi, Kannada, Tamil, Telugu.
+• English should be base language.
+• Translate responses dynamically based on user selection.
+• Ensure UI labels also change language.
+• Persist selected language across messages.
+
+────────────────────────────────
+4️⃣ UI / UX ENHANCEMENTS (VERY IMPORTANT)
+────────────────────────────────
+
+Upgrade UI to feel like a REAL AI assistant.
+
+✔ Add welcome section:
+  - App name: “🇮🇳 Bharat Scheme Bot”
+  - Short description
+  - Quick suggestion buttons:
+    - Student schemes
+    - Farmer schemes
+    - Women schemes
+    - Health schemes
+
+✔ Add typing indicator:
+  - “Bharat Bot is typing...”
+
+✔ Improve chat bubbles:
+  - Rounded corners
+  - Assistant vs user color distinction
+  - Smooth message animation
+
+✔ Scheme cards UI:
+  - Category badge
+  - State badge
+  - Expand / collapse “View Details”
+  - “Apply Now” button (external link icon)
+
+✔ Make fully responsive for mobile and desktop.
+
+✔ Use government-friendly colors:
+  - Blue, white, subtle gray
+  - Clean typography
+  - Accessible font sizes
+
+────────────────────────────────
+5️⃣ UX RELIABILITY IMPROVEMENTS
+────────────────────────────────
+
+• Disable send button while bot is responding.
+• Show loading state.
+• Prevent duplicate responses.
+• Support Enter key to send message.
+• Scroll chat automatically to latest message.
+
+────────────────────────────────
+6️⃣ PROJECT STRUCTURE
+────────────────────────────────
+
+Ensure clean structure:
+- app.py
+- templates/index.html
+- static/style.css
+- static/script.js
+- data/schemes.json
+
+Add beginner-friendly comments in code.
+
+────────────────────────────────
+7️⃣ FINAL POLISH
+────────────────────────────────
+
+• Add footer disclaimer:
+  “This AI provides informational guidance only. Please verify details from official government portals.”
+
+• Ensure the app runs directly on Replit with no extra configuration.
+• Optimize performance for large scheme datasets.
+
+────────────────────────────────
+OUTPUT REQUIREMENT
+────────────────────────────────
+
+Update the FULL PROJECT CODE.
+Provide only clean, working, well-commented code.
+Do not explain concepts unless necessary.
+Focus on correctness, UI polish, and reliability.
+
+Build the final upgraded version now.
