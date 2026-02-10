@@ -1,9 +1,10 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { sql } from "drizzle-orm";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const schemes = pgTable("schemes", {
-  id: serial("id").primaryKey(),
+export const schemes = sqliteTable("schemes", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   source: text("source").notNull().default("Central"), // Central or Karnataka
   category: text("category").notNull(), // farmer, student, women, etc.
@@ -15,22 +16,22 @@ export const schemes = pgTable("schemes", {
   applicationProcess: text("application_process").notNull(),
   officialLink: text("official_link"),
   state: text("state").default("Pan India"),
-  keywords: text("keywords").array(), // For enhanced matching
+  keywords: text("keywords", { mode: "json" }).$type<string[]>(), // Store as JSON string in SQLite
   // Support for simple multilingual mapping if needed later, or just store JSON
-  translations: jsonb("translations").default({}), 
+  translations: text("translations", { mode: "json" }).default("{}").$type<Record<string, any>>(),
 });
 
 export const insertSchemeSchema = createInsertSchema(schemes).omit({ id: true });
 export type Scheme = typeof schemes.$inferSelect;
 export type InsertScheme = z.infer<typeof insertSchemeSchema>;
 
-export const chatLogs = pgTable("chat_logs", {
-  id: serial("id").primaryKey(),
+export const chatLogs = sqliteTable("chat_logs", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
   userMessage: text("user_message").notNull(),
   botResponse: text("bot_response").notNull(),
   intent: text("intent"),
   language: text("language").default("en"),
-  timestamp: timestamp("timestamp").defaultNow(),
+  timestamp: integer("timestamp", { mode: "timestamp" }).default(sql`(unixepoch() * 1000)`),
 });
 
 export const insertChatLogSchema = createInsertSchema(chatLogs).omit({ id: true, timestamp: true });

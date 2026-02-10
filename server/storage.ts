@@ -1,10 +1,10 @@
 import { db } from "./db";
 import { schemes, chatLogs, type Scheme, type InsertScheme, type InsertChatLog, type ChatLog } from "@shared/schema";
-import { eq, ilike, or, and, sql } from "drizzle-orm";
+import { eq, like, or, and, sql } from "drizzle-orm";
 
 export interface IStorage {
   // Schemes
-  getAllSchemes(category?: string, state?: string, search?: string): Promise<Scheme[]>;
+  getAllSchemes(category?: string, state?: string, search?: string, source?: string): Promise<Scheme[]>;
   getSchemeById(id: number): Promise<Scheme | undefined>;
   createScheme(scheme: InsertScheme): Promise<Scheme>;
   seedSchemes(schemesList: InsertScheme[]): Promise<void>;
@@ -18,27 +18,27 @@ export class DatabaseStorage implements IStorage {
     let conditions = [];
 
     if (category) {
-      conditions.push(ilike(schemes.category, `%${category}%`));
+      conditions.push(like(schemes.category, `%${category}%`));
     }
-    
+
     if (state) {
       conditions.push(or(
-        ilike(schemes.state, `%${state}%`),
-        ilike(schemes.state, 'Pan India'),
-        ilike(schemes.state, 'Karnataka')
+        like(schemes.state, `%${state}%`),
+        like(schemes.state, 'Pan India'),
+        like(schemes.state, 'Karnataka')
       ));
     }
 
     if (source) {
-      conditions.push(ilike(schemes.source, `%${source}%`));
+      conditions.push(like(schemes.source, `%${source}%`));
     }
 
     if (search) {
       conditions.push(or(
-        ilike(schemes.name, `%${search}%`),
-        ilike(schemes.description, `%${search}%`),
-        ilike(schemes.benefits, `%${search}%`),
-        sql`${schemes.keywords} @> ARRAY[${search}]::text[]`
+        like(schemes.name, `%${search}%`),
+        like(schemes.description, `%${search}%`),
+        like(schemes.benefits, `%${search}%`),
+        like(schemes.keywords, `%${search}%`) // Search within JSON string
       ));
     }
 

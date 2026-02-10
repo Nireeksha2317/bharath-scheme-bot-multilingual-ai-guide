@@ -23,6 +23,7 @@ export const api = {
         category: z.string().optional(),
         state: z.string().optional(),
         search: z.string().optional(),
+        source: z.string().optional(),
       }).optional(),
       responses: {
         200: z.array(z.custom<typeof schemes.$inferSelect>()),

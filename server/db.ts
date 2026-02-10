@@ -1,8 +1,6 @@
-import { drizzle } from "drizzle-orm/node-postgres";
-import pg from "pg";
+import { drizzle } from "drizzle-orm/better-sqlite3";
+import Database from "better-sqlite3";
 import * as schema from "@shared/schema";
-
-const { Pool } = pg;
 
 if (!process.env.DATABASE_URL) {
   throw new Error(
@@ -10,5 +8,7 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-export const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-export const db = drizzle(pool, { schema });
+// Remove 'file:' prefix if present for better-sqlite3 constructor
+const dbPath = process.env.DATABASE_URL.replace('file:', '');
+const sqlite = new Database(dbPath);
+export const db = drizzle(sqlite, { schema });

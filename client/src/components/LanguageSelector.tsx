@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { 
-  DropdownMenu, 
-  DropdownMenuContent, 
-  DropdownMenuItem, 
-  DropdownMenuTrigger 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Globe, Check } from "lucide-react";
@@ -12,8 +12,7 @@ export const LANGUAGES = [
   { code: "en", label: "English", native: "English" },
   { code: "hi", label: "Hindi", native: "हिन्दी" },
   { code: "kn", label: "Kannada", native: "ಕನ್ನಡ" },
-  { code: "ta", label: "Tamil", native: "தமிழ்" },
-  { code: "te", label: "Telugu", native: "తెలుగు" },
+
 ];
 
 interface LanguageSelectorProps {
@@ -35,7 +34,7 @@ export function LanguageSelector({ currentLang, onLanguageChange }: LanguageSele
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[180px] rounded-xl p-1 shadow-lg border-border/50">
         {LANGUAGES.map((lang) => (
-          <DropdownMenuItem 
+          <DropdownMenuItem
             key={lang.code}
             onClick={() => onLanguageChange(lang.code)}
             className={`
